@@ -273,6 +273,8 @@ $(document).on('click','.btn-pencil',function (e){
 
 id = $(this).data('id');
 $('.id').val(id);
+$('.pass1').val('');
+$('.pass2').val('');
 $('#modal-pencil').modal('show');
 
 })
