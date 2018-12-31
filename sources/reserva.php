@@ -3,8 +3,8 @@
 include'../vendor/autoload.php';
 include'../autoload.php';
 
-$session =  new Session();
-$session->validity();
+//$session =  new Session();
+//$session->validity();
 
 $opcion     = $_REQUEST['op'];
 $funciones  = new Funciones();
@@ -12,7 +12,7 @@ $funciones  = new Funciones();
 $conexion   =  new Conexion();
 $conexion   =  $conexion->get_conexion();
 
-$userCreate = $_SESSION[KEY.NOMBRES].' '.$_SESSION[KEY.APELLIDOS];
+$userCreate = "INTERNET";
 $dateCreate = date('Y-m-d H:i:s');
 
 
