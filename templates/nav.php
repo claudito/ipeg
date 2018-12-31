@@ -11,6 +11,9 @@
 
     <title><?= $titulo ?> | IPEG</title>
 
+   <!-- Favicon -->
+<link rel="shortcut icon" sizes="16x16" href="https://www.ipeg.edu.pe/wp-content/uploads/2018/01/cropped-logo-ipeg-32x32.png">
+
     <!-- Bootstrap core CSS-->
     <link href="<?= URL ?>assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 

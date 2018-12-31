@@ -300,6 +300,58 @@ return "error archivo";
 }
 
 
+function formato_fecha_inicio($fecha)
+{
+
+$dia_lista = array(
+
+  0=>'Domingo',
+  1=>'Lunes',
+  2=>'Martes',
+  3=>'Miércoles',
+  4=>'Jueves',
+  5=>'Viernes',
+  6=>'Sábado'
+
+  );
+
+$mes_lista = array(
+
+  '01'=>'Enero',
+  '02'=>'Febrero',
+  '03'=>'Marzo',
+  '04'=>'Abril',
+  '05'=>'Mayo',
+  '06'=>'Junio',
+  '07'=>'Julio',
+  '08'=>'Agosto',
+  '09'=>'Septiembre',
+  '10'=>'Octubre',
+  '11'=>'Noviembre',
+  '12'=>'Diciembre'
+
+  );
+
+
+$nombre_dia  =  date("w",strtotime($fecha));
+$dia         =  date("d",strtotime($fecha)); 
+$mes         =  date("m",strtotime($fecha)); 
+$anio        =  date("Y",strtotime($fecha)); 
+
+return $dia_lista[$nombre_dia].', '.$dia.' de '.$mes_lista[$mes].' '.$anio;
+
+}
+
+
+function restar_meses($mes)
+{
+$fechaActual = date('Y-m-d');
+$fechaMesPasado = strtotime ('-'.$mes.' month', strtotime($fechaActual));
+$fechaMesPasadoDate = date('Y-m-d', $fechaMesPasado);
+return $fechaMesPasadoDate;
+}
+
+
 }
 
 
