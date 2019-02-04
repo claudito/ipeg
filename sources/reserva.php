@@ -80,7 +80,7 @@ break;
 
 case 5:
 
-$query  = "SELECT * FROM   fecha_inicio_curso WHERE estado='ACTIVO'";
+$query  = "SELECT * FROM   fecha_inicio_curso WHERE estado='ACTIVO' ORDER BY fecha desc";
 $result = $funciones->query($query);
 
 $data  = array();
@@ -189,17 +189,17 @@ echo "ok";
 
 //Enviar Correo
 
-$mail       = new Mail();
-$msg_correo = $mail->send($email,$fullname,$diploma1,$diploma2,$diploma3);
+//$mail       = new Mail();
+//$msg_correo = $mail->send($email,$fullname,$diploma1,$diploma2,$diploma3);
 
-echo $msg_correo;
+//echo $msg_correo;
 
 
 } catch (Exception $e) {
 	
-echo json_encode(array('title'=>'Error','type'=>'error','text'=>'Consultar el área de Soporte'));
+//echo json_encode(array('title'=>'Error','type'=>'error','text'=>'Consultar el área de Soporte'));
 
-//echo $e->getMessage();
+echo $e->getMessage();
 
 }
 

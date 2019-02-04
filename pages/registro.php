@@ -91,7 +91,7 @@ $fechafin =  $fecha->format('Y-m-d');
        
     <div class="form-group">
     <label>Comentario</label>
-    <textarea name="comentario"  rows="5" class="comentario form-control" required onchange="Mayusculas(this)"></textarea>
+    <textarea name="comentario"  rows="5" class="comentario form-control" onchange="Mayusculas(this)"></textarea>
     </div>
 
 

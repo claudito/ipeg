@@ -56,123 +56,58 @@ WHERE DATE_FORMAT(r.dateCreate,'%Y-%m-%d') BETWEEN '".$fechaini."' AND '".$fecha
 ";
 $statement = $conexion->query($query);
 $statement->execute();
-$result      = $statement->fetchAll(PDO::FETCH_ASSOC);
+$result    = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-$data  = array();
+$results = [
 
-foreach ($result as $key => $value) {
-
-if($value['check_correo']==0)
-{
-
-$btn_check = '<button class="btn btn-default btn-check btn-'.$value['id'].'" 
-data-id="'.$value['id'].'"
-data-email="'.$value['email'].'"
-data-fullname="'.$value['fullname'].'"
-><i class="fa fa-square-o '.$value['id'].'"></i></button>';
-
-}
-else
-{
-
-$btn_check = '<button 
-class="btn btn-primary btn-check btn-'.$value['id'].'"  
-disabled><i class="fa fa-check-square"></i></button>';
-
-}
-
- $data[] = [ 
-
-'id'=>$value['id'],
-'check'=>$btn_check,
-'fullname'=>$value['fullname'],
-'dni'=>$value['dni'],
-'email'=>$value['email'],
-'celular'=>$value['celular'],
-'diploma_1'=>$value['diploma_1'],
-'diploma_2'=>$value['diploma_2'],
-'diploma_3'=>$value['diploma_3'],
-'modalidad'=>$value['modalidad'],
-'fecha_inicio'=>$value['fecha_inicio'],
-'dateCreate'=>$value['dateCreate'],
-'promocion'=>$value['promocion'],
-'beca'=>$value['beca'],
-'estado'=>'<a  href="#" data-id="'.$value['id'].'" class="btn-estado badge badge-'.$value['label'].'">'.$value['estado'].'</a>',
-
-'acciones'=>'
-
-<button type="button" class="btn btn-primary btn-edit btn-sm" data-id="'.$value['id'].'"><i class="fa fa-edit"></i></button>
-
- '
+            "draw"=>1,
+			"recordsTotal"=> count($result),
+			"recordsFiltered"=> count($result),
+			"data"=>$result
 
 
-
- ];
-
-}
-
-$results = ["sEcho" => 1,
-          "iTotalRecords" => count($data),
-          "iTotalDisplayRecords" => count($data),
-          "aaData" => $data 
            ];
+
+
 echo json_encode($results);
 
 break;
 
 case 2:
 
-$id       = $_REQUEST['id'];
-$email    = $_REQUEST['email'];
-$fullname = $_REQUEST['fullname'];
 
-$query   = "INSERT INTO  check_correo(correo,fullname,id_reserva)VALUES
-(:correo,:fullname,:id_reserva)";
-$statement = $conexion->prepare($query);
-$statement->bindParam(':correo',$email);
-$statement->bindParam(':fullname',$fullname);
-$statement->bindParam(':id_reserva',$id);
-$statement->execute();
-echo "ok";
-
-break;
+if(isset($_REQUEST['check']))
+{
 
 
-case 3:
+foreach ($_REQUEST['check'] as $key => $id) {
 
-$query   = "TRUNCATE TABLE check_correo";
-$statement = $conexion->prepare($query);
-$statement->execute();
-echo "ok";
-break;
+  
+  $query     = "SELECT * FROM reserva  WHERE id=".$id;
+  $statement = $conexion->prepare($query);
+  $statement->execute();
+  $data      = $statement->fetch(PDO::FETCH_ASSOC);
+   
+  //Enviar Correo
+  $mail = new Mail();
+  $mail->recordatorio($data['email'],$data['fullname']);
 
-
-case 4:
-
-$query   = "SELECT * FROM check_correo";
-$result  = $funciones->query($query);
-echo json_encode($result);
-break;
-
-
-case 5:
-
-$query   = "SELECT * FROM check_correo";
-$result  = $funciones->query($query);
-
-//Enviar Correo
-foreach ($result as $key => $value) {
-	
- $mail =  new Mail();
- echo $mail->recordatorio($value['correo'],$value['fullname']);
 
 }
 
-//Limpiar Data
-$query   = "TRUNCATE TABLE check_correo";
-$statement = $conexion->prepare($query);
-$statement->execute();
-echo "Data Truncada";
+
+echo json_encode(array('title'=>'Buen Trabajo','type'=>'success','text'=>'Correo Enviado'));
+
+
+}
+else
+{
+
+echo json_encode(array('title'=>'Vacío','type'=>'warning','text'=>'Necesita seleccionar un registro como mínimo'));
+
+
+}
+
 
 break;
 

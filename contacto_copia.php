@@ -38,22 +38,22 @@
 <link rel='dns-prefetch' href='//s.w.org' />
 <link rel="alternate" type="application/rss+xml" title="IPEG &raquo; Feed" href="https://www.ipeg.edu.pe/feed/" />
 <link rel="alternate" type="application/rss+xml" title="IPEG &raquo; RSS de los comentarios" href="https://www.ipeg.edu.pe/comments/feed/" />
-		<script type="text/javascript">
-			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/www.ipeg.edu.pe\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.0.2"}};
-			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55358,56760,9792,65039],[55358,56760,8203,9792,65039]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
-		</script>
-		<style type="text/css">
+        <script type="text/javascript">
+            window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/www.ipeg.edu.pe\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.0.2"}};
+            !function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55358,56760,9792,65039],[55358,56760,8203,9792,65039]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+        </script>
+        <style type="text/css">
 img.wp-smiley,
 img.emoji {
-	display: inline !important;
-	border: none !important;
-	box-shadow: none !important;
-	height: 1em !important;
-	width: 1em !important;
-	margin: 0 .07em !important;
-	vertical-align: -0.1em !important;
-	background: none !important;
-	padding: 0 !important;
+    display: inline !important;
+    border: none !important;
+    box-shadow: none !important;
+    height: 1em !important;
+    width: 1em !important;
+    margin: 0 .07em !important;
+    vertical-align: -0.1em !important;
+    background: none !important;
+    padding: 0 !important;
 }
 </style>
 <link rel='stylesheet' id='layerslider-css'  href='https://www.ipeg.edu.pe/wp-content/plugins/LayerSlider/static/layerslider/css/layerslider.css?ver=6.7.6' type='text/css' media='all' />
@@ -98,8 +98,8 @@ var WP_CountUp_JS = {"resetCounterWhenViewAgain":"","endInsideShortcode":"","plu
 <link rel='shortlink' href='https://www.ipeg.edu.pe/?p=1801' />
 <link rel="alternate" type="application/json+oembed" href="https://www.ipeg.edu.pe/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.ipeg.edu.pe%2Fcontacto%2F" />
 <link rel="alternate" type="text/xml+oembed" href="https://www.ipeg.edu.pe/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.ipeg.edu.pe%2Fcontacto%2F&#038;format=xml" />
-<style type='text/css'>@media (min-width: 1200px) {}@media (min-width: 992px) and (max-width: 1200px) {}@media (min-width: 768px) and (max-width: 991px) {}@media (max-width: 767px) {}</style>		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
-		<style type="text/css" id="custom-background-css">
+<style type='text/css'>@media (min-width: 1200px) {}@media (min-width: 992px) and (max-width: 1200px) {}@media (min-width: 768px) and (max-width: 991px) {}@media (max-width: 767px) {}</style>     <style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+        <style type="text/css" id="custom-background-css">
 body.custom-background { background-image: url("https://www.ipeg.edu.pe/wp-content/uploads/2018/02/slide2.png"); background-position: center center; background-size: cover; background-repeat: no-repeat; background-attachment: fixed; }
 </style>
 <link rel="icon" href="https://www.ipeg.edu.pe/wp-content/uploads/2018/01/cropped-logo-ipeg-32x32.png" sizes="32x32" />
@@ -132,9 +132,9 @@ body.custom-background { background-image: url("https://www.ipeg.edu.pe/wp-conte
                         <div class="pre-header">
     <i class="fa fa-phone"></i> <a href="tel:5115667014">Central: (01) 566 7014</a> |
     <i class="fa fa-whatsapp"></i> <a href="tel:511945949088">WhatsApp: 945 949 088</a> |
-    <i class="fa fa-envelope"></i> <a href="mailto:informes@ipeg.edu.pe">informes@ipeg.edu.pe</a>	
+    <i class="fa fa-envelope"></i> <a href="mailto:informes@ipeg.edu.pe">informes@ipeg.edu.pe</a>   
 </div>
-                    </div> <!-- col-sm-12 -->	
+                    </div> <!-- col-sm-12 -->   
                 </div> <!-- row -->
             </div> <!-- container -->
         </header>
@@ -143,10 +143,10 @@ body.custom-background { background-image: url("https://www.ipeg.edu.pe/wp-conte
                 <div class="row">
                     <div class="col-sm-12">
                         <nav class="navbar navbar-default" role="navigation" id="navbar">
-  	<div class="container-fluid">
-	    <div class="navbar-header">
+    <div class="container-fluid">
+        <div class="navbar-header">
               
-	    </div>
+        </div>
         <div id='max-menu-wrapper'><div id="mega-menu-wrap-primary" class="mega-menu-wrap"><div class="mega-menu-toggle" tabindex="0"><div class="mega-toggle-blocks-left"></div><div class="mega-toggle-blocks-center"></div><div class="mega-toggle-blocks-right"><div class='mega-toggle-block mega-menu-toggle-block mega-toggle-block-1' id='mega-toggle-block-1'><span class='mega-toggle-label'><span class='mega-toggle-label-closed'>MENU</span><span class='mega-toggle-label-open'>MENU</span></span></div></div></div><ul id="mega-menu-primary" class="mega-menu max-mega-menu mega-menu-horizontal mega-no-js" data-event="hover_intent" data-effect="fade_up" data-effect-speed="200" data-effect-mobile="disabled" data-effect-speed-mobile="200" data-mobile-force-width="false" data-second-click="close" data-document-click="collapse" data-vertical-behaviour="accordion" data-breakpoint="600" data-unbind="true"><li class='mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-home mega-align-bottom-left mega-menu-flyout mega-menu-item-24' id='mega-menu-item-24'><a class="mega-menu-link" href="https://www.ipeg.edu.pe/" tabindex="0">Inicio</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-megamenu mega-align-bottom-left mega-menu-megamenu mega-menu-item-632' id='mega-menu-item-632'><a class="mega-menu-link" href="https://www.ipeg.edu.pe/nosotros/" tabindex="0">Nosotros</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-414' id='mega-menu-item-414'><a class="mega-menu-link" href="https://www.ipeg.edu.pe/diplomados/" tabindex="0">Diplomados</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-423' id='mega-menu-item-423'><a class="mega-menu-link" href="https://www.ipeg.edu.pe/cursos/" tabindex="0">Cursos</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-1304' id='mega-menu-item-1304'><a class="mega-menu-link" href="https://www.ipeg.edu.pe/capacitacion-in-house/" tabindex="0">Capacitación In House</a></li><li class='mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-align-bottom-left mega-menu-flyout mega-menu-item-29' id='mega-menu-item-29'><a class="mega-menu-link" href="https://www.ipeg.edu.pe/aula/" tabindex="0">Aula virtual</a></li><li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-current-menu-item mega-page_item mega-page-item-1801 mega-current_page_item mega-align-bottom-left mega-menu-flyout mega-menu-item-1803' id='mega-menu-item-1803'><a class="mega-menu-link" href="https://www.ipeg.edu.pe/contacto/" tabindex="0">Contacto</a></li></ul></div></div>    </div>
 </nav>                    </div> <!-- col-sm-12 -->
                 </div> <!-- row -->
@@ -157,7 +157,7 @@ body.custom-background { background-image: url("https://www.ipeg.edu.pe/wp-conte
         <div class="row">
             <div class="col-md-12">
                     <h1 class="banner-sub-title">
-                    	Contacto                    </h1>
+                        Contacto                    </h1>
             </div> 
         </div>    
     </div>    
@@ -279,7 +279,7 @@ body.custom-background { background-image: url("https://www.ipeg.edu.pe/wp-conte
                     <a href="https://www.ipeg.edu.pe/contacto/">Contacto</a>
                 </p>
             </div> <!-- container -->
-	</footer>	
+    </footer>   
         <script data-cfasync="false" type="text/javascript">if (window.addthis_product === undefined) { window.addthis_product = "wpp"; } if (window.wp_product_version === undefined) { window.wp_product_version = "wpp-6.1.8"; } if (window.wp_blog_version === undefined) { window.wp_blog_version = "5.0.2"; } if (window.addthis_share === undefined) { window.addthis_share = {"passthrough":{"twitter":{"via":"ipeg_edu_pe"}}}; } if (window.addthis_config === undefined) { window.addthis_config = {"data_track_clickback":true,"ui_atversion":"300"}; } if (window.addthis_plugin_info === undefined) { window.addthis_plugin_info = {"info_status":"enabled","cms_name":"WordPress","plugin_name":"Share Buttons by AddThis","plugin_version":"6.1.8","plugin_mode":"AddThis","anonymous_profile_id":"wp-b3eb9f779d08668e9d436976d46e5d2c","page_info":{"template":"pages","post_type":""},"sharing_enabled_on_post_via_metabox":false}; } 
                     (function() {
                       var first_load_interval_id = setInterval(function () {

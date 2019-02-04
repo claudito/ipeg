@@ -33,17 +33,18 @@ $fechafin =  $fecha->format('Y-m-d');
 
 </div>
 
-<div class="col-md-2"></div>
 
-<div class="col-md-2">
-  
-<button class="btn btn-danger btn-delete"><i class="fa fa-trash"></i></button>
-<button class="btn btn-info btn-mensaje"><i class="fa fa-envelope-o"></i></button>
 
 </div>
 
-</div>
+
 <hr>
+
+<form id="enviar" autocomplete="off">
+
+<button class="btn btn-info btn-mensaje"><i class="fa fa-envelope-o"></i> Enviar Correo Masivo</button>
+<p></p>
+
 <div class="row">
   
 <div class="col-md-12">
@@ -52,8 +53,12 @@ $fechafin =  $fecha->format('Y-m-d');
       <table id="consulta"  class="table table-hover table-condensend" style="font-size: 12px">
         <thead>
          <tr class="table-active">
+
+             <input type="checkbox"  id="checkTodos" style="display: none">
+
+
               <th>Id</th>
-              <th>Check</th>
+              <th><label   for="checkTodos">Check</label></th>
               <th>Nombre</th>
               <th>Estado</th>
               <th>Email</th>
@@ -76,30 +81,9 @@ $fechafin =  $fecha->format('Y-m-d');
 
 </div>
 
-<!-- Modal Estado -->
-<form id="enviar-correo" autocomplete="off">
-<div class="modal fade" id="modal-correo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Enviar Correo Masivos</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
 
-      <div class="mensaje"></div>
-      
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-info btn-submit" disabled>Confirmar Envío</button>
-      </div>
-    </div>
-  </div>
-</div>
 </form>
+
 
 
 <script>
@@ -115,7 +99,7 @@ $('#consulta').dataTable({
 //dom: 'Bfrtip',
  "deferRender": true,
 "bAutoWidth": false,
-"iDisplayLength": 25,
+"iDisplayLength": 100,
 "language": {
 "url": "../assets/js/spanish.json"
 },
@@ -124,7 +108,15 @@ $('#consulta').dataTable({
 "aoColumns": [
 
 { mData: 'id'},
-{ mData: 'check'},
+{ mData: null,render:function (data){
+
+var check = '<input type="checkbox" name="check[]"   value="'+data.id+'"  class="form-control" />';
+
+
+return check;
+
+
+}},
 { mData: 'fullname'},
 { mData: 'estado'},
 { mData: 'email'},
@@ -163,143 +155,92 @@ e.preventDefault();
 });
 
 
-//Check Fila
-$(document).on('click','.btn-check',function (){
-
-id       = $(this).data('id');
-email    = $(this).data('email');
-fullname = $(this).data('fullname');
-
-parametros = {"id":id,"email":email,"fullname":fullname};
-
-url = "../sources/correo-masivo.php?op=2";
-
-//deshabilitar botón
-$('.btn-'+id+'').attr('disabled','disabled');
-//cambiar clase botón seleccionado
-$('.btn-'+id+'').removeClass('btn-default').addClass('btn-primary');
-//agregar icono check
-$('.'+id+'').removeClass('fa fa-square-o').addClass('fa fa-check-square');
-
-$.getJSON(url,parametros,function(data){
-
+//Marcar Todos las Filas
+$("#checkTodos").change(function () {
+$("input:checkbox").prop('checked', $(this).prop("checked"));
 });
 
- });
+
+//Enviar Correo
+$(document).on('submit','#enviar',function(e){
 
 
-//Botón Liberal Selección
-$(document).on('click','.btn-delete',function (){
+parametros = $(this).serialize();
+
 
 swal({
-  title: "Estas Seguro?",
-  text: "Esta acción liberará las filas seleccionadas.",
-  type: "warning",
+  title: "Esta Seguro?",
+  text: "Se enviará un correo recordatorio a todos los registros seleccionados, tenga en cuenta que el envío puede demorar dependiendo de la cantidad de correos.",
+  type: "info",
   showCancelButton: true,
   confirmButtonClass: "btn-danger",
   cancelButtonText:"Cancelar",
-  confirmButtonText: "Si Estoy Seguro",
+  confirmButtonText: "Si, Enviar",
   closeOnConfirm: false
 },
 function(){
-  
-url = "../sources/correo-masivo.php?op=3";
-$.get(url,{},function(data){
-
-swal({
-  title:"Data Liberada",
-  text: "...",
-  type:"success",
-  timer: 3000,
-  showConfirmButton: false
-});
-
-loadData('<?= $fechaini ?>','<?= $fechafin ?>');
-
-});
-
-});
-
- });
-
-//Cargar Modal Enviar Correo
-$(document).on('click','.btn-mensaje',function (){
-
-url = "../sources/correo-masivo.php?op=4";
-$.getJSON(url,{},function(data){
-
-mensaje ="";
-
-if(data.length>0)
-{
-
-mensaje += '<div class="alert alert-success" role="alert">';
-mensaje += 'Estas Seguro de Enviar los Recordatorios.';
-mensaje += '</div>';
-
-$('.btn-submit').removeAttr('disabled','disabled');
-}
-else
-{
-
-mensaje += '<div class="alert alert-warning" role="alert">';
-mensaje += 'No hay elementos seleccionados.';
-mensaje += '</div>';
-
-$('.btn-submit').attr('disabled','disabled');
-
-}
-
-$('.mensaje').html(mensaje);
-$('#modal-correo').modal('show');
-
-});
-
- });
-
-
-//Enviar Correos Masivos
-$(document).on('submit','#enviar-correo',function (event){
 
 $.ajax({
 
-url:"../sources/correo-masivo.php?op=5",
-type:"GET",
-data:{},
+url :"../sources/correo-masivo.php?op=2",
+type:"POST",
+dataType:"JSON",
+data:parametros,
 beforeSend:function()
 {
 
 swal({
-  title: "Cargando",
-  imageUrl:"../assets/img/loader2.gif",
-  text:  "Espere un momento, no cierre la ventana.",
-  timer: 3000,
-  showConfirmButton: false
+ 
+  title:"Cargando",
+  text: "Espere un momento no cierre la ventana",
+  imageUrl: '../assets/img/loader2.gif',
+  showConfirmButton:false
+
 });
+
 
 
 },
-success:function(data)
-{
+success:function(data){
 
 swal({
-  title:"Buen Trabajo",
-  type:"success",
-  text:"Recordatorios Enviados.",
+ 
+  title:data.title,
+  text:data.text,
+  type: data.type,
   timer: 3000,
-  showConfirmButton: false
+  showConfirmButton:false
+
 });
 
-loadData('<?= $fechaini ?>','<?= $fechafin ?>');
-$('#modal-correo').modal('hide');
+
 
 }
 
 
+
+
+
 });
 
-event.preventDefault();
+
+
+
+
+
 });
+
+
+
+
+
+
+
+
+
+e.preventDefault();
+});
+
 
 </script>
 
