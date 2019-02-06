@@ -186,13 +186,15 @@ $statement->bindParam(':dateCreate',$dateCreate);
 $statement->bindParam(':userCreate',$userCreate);
 $statement->execute();
 echo "ok";
+echo "<br>";
 
 //Enviar Correo
 
-//$mail       = new Mail();
-//$msg_correo = $mail->send($email,$fullname,$diploma1,$diploma2,$diploma3);
+$mail       = new Mail();
+$msg_correo = $mail->automatico_reserva($email,$fullname,$diploma1,$diploma2,$diploma3);
 
-//echo $msg_correo;
+echo $msg_correo;
+echo "<br>";
 
 
 } catch (Exception $e) {

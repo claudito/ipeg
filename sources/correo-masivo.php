@@ -90,7 +90,7 @@ foreach ($_REQUEST['check'] as $key => $id) {
    
   //Enviar Correo
   $mail = new Mail();
-  $mail->recordatorio($data['email'],$data['fullname']);
+  $mail->recordatorio_reserva($data['email'],$data['fullname']);
 
 
 }

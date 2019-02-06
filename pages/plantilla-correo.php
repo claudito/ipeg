@@ -7,6 +7,10 @@ $assets =  new Assets();
 $assets->nav('..','Plantilla Correo');
 $assets->breadcrumbs('Reserva','Plantilla Correo');
 $assets->summernote();
+
+
+
+
  ?>
 
 
@@ -21,13 +25,8 @@ $assets->summernote();
          <tr class="table-active">
               <th>Id</th>
               <th>Nombre</th>
-              <th>Cabecera</th>
+              <th>Banner</th>
               <th>Cuerpo</th>
-              <th>Fechas</th>
-              <th>Firmas</th>
-              <th>Pie de Página</th>
-              
-
                       
           </tr>
         </thead>
@@ -53,17 +52,15 @@ $assets->summernote();
       <div class="modal-body">
 
       <input type="hidden" name="id"      class="id">
-      <input type="hidden" name="campo"  class="campo">
-
 
       <div class="form-group">
-      <textarea id="seccion" name="seccion" class="seccion" required ></textarea>
+      <textarea id="cuerpo" name="cuerpo" class="cuerpo" required ></textarea>
       </div>
       <script>
       $(document).ready(function() {
-      $('#seccion').summernote({
+      $('#cuerpo').summernote({
 
-      height:300,
+      height:350,
       placeholder: 'Ingrese el texto.'
 
 
@@ -85,16 +82,43 @@ $assets->summernote();
 </form>
 
 
+<!-- Modal Banner  -->
+<form id="banner" autocomplete="off">
+<!-- Modal -->
+<div class="modal fade" id="modal-banner" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Actualizar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+      <input type="hidden" name="id" class="id">
+
+
+
+      <div class="input-group">
+        <input type="file"  name="archivo" class="archivo form-control"  accept="image/*" required>
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-primary">Subir Imagen</button>
+        </span>
+      </div>
+
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+</form>
+
+
+
 <script>
-
-//Quitar Botones Molestos SummerNote
-$(document).ready(function (){
-
-$('.note-btn').attr('style','display:none');
-$('.note-children-container').attr('style','display:none');
-
-
-});
 
 function loadData()
 {
@@ -118,12 +142,21 @@ $('#consulta').dataTable({
 
 { mData: 'id'},
 { mData: 'nombre'},
-{ mData: 'seccion_1'},
-{ mData: 'seccion_2'},
-{ mData: 'seccion_3'},
-{ mData: 'seccion_4'},
-{ mData: 'seccion_5'}
+{ mData: null,render:function(data){
 
+banner = '<button type="button" class="btn btn-primary btn-sm btn-banner" data-nombre="'+data.nombre+'" data-id="'+data.id+'"><i class="fa fa-upload"></i> Subir / Actualizar</button>';
+
+return banner;
+
+}},
+{ mData: null,render:function(data){
+
+cuerpo = '<button type="button" class="btn btn-primary btn-sm btn-cuerpo" data-nombre="'+data.nombre+'" data-id="'+data.id+'"><i class="fa fa-edit"></i> Editar</button>';
+
+return cuerpo;
+
+
+}}
 
 ]
 
@@ -135,32 +168,27 @@ $('#consulta').dataTable({
 //Cargar Data
 loadData();
 
-//Cargal Modal Actualizar
-$(document).on('click','.btn-edit',function (e){
+//Cargar Modal Actualizar Cuerpo
+$(document).on('click','.btn-cuerpo',function(){
 
-$('.note-btn').attr('style','display:block');
-$('.note-children-container').attr('style','display:block');
+id        = $(this).data('id');
+nombre    = $(this).data('nombre');
 
-
-id      = $(this).data('id');
-name    = $(this).data('name');
-seccion = $(this).data('seccion');
 $('.id').val(id);
-$('.campo').val('seccion_'+seccion);
-$('#modal-actualizar').modal('show');
-$('.modal-title').html(name);
 
 
-//Cargar Información de la Fila
 url = "../sources/plantilla-correo.php?op=2";
 
-$.getJSON(url,{"id":id,"seccion":seccion},function(data){
+$.getJSON(url,{'id':id},function(data){
 
-$('.seccion').summernote('code', data.seccion);
-
+$('.cuerpo').summernote('code', data.cuerpo);
 
 
 });
+
+
+$('.modal-title').html(nombre);
+$('#modal-actualizar').modal('show');
 
 });
 
@@ -190,8 +218,6 @@ swal({
 success:function(data)
 {
 
-//Cargar Data
-//loadData();
 
 swal({
   title:"Buen Trabajo",
@@ -208,7 +234,75 @@ swal({
 
 
 e.preventDefault();
-})
+});
+
+//Cargar Modal Banner
+$(document).on('click','.btn-banner',function(){
+
+
+id        = $(this).data('id');
+nombre    = $(this).data('nombre');
+
+$('.id').val(id);
+
+$('.modal-title').html(nombre);
+$('#modal-banner').modal('show');
+
+});
+
+
+
+//Formulario Subir Archivo
+$(document).on('submit','#banner',function (e){
+
+parametros = $(this).serialize();
+
+$.ajax({
+
+url:"../sources/plantilla-correo.php?op=4",
+type:"POST",
+data: new FormData(this),
+contentType: false,
+cache: false,
+processData:false,
+beforeSend:function()
+{
+
+swal({
+  title: "Cargando",
+  imageUrl:"../assets/img/loader2.gif",
+  text:  "Espere un momento, no cierre la ventana.",
+  timer: 3000,
+  showConfirmButton: false
+});
+
+},
+success:function(data)
+{
+
+$('.archivo').val('');
+$('#modal-banner').modal('hide');
+
+swal({
+  title:"Buen Trabajo",
+  type: "success",
+  text: "Registro Actualizado",
+  timer: 3000,
+  showConfirmButton: false
+});
+
+
+}
+
+});
+
+
+e.preventDefault();
+});
+
+
+
+
 
 
 

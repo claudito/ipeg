@@ -18,35 +18,15 @@ switch ($opcion) {
 case 1:
 header("Content-type: application/json; charset=utf-8");
 
-$query =  "SELECT  * FROM plantilla_correo";
+$query =  "SELECT id,nombre,banner,cuerpo FROM plantilla_correo";
 $statement = $conexion->query($query);
 $statement->execute();
 $result      = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-$data  = array();
-
-foreach ($result as $key => $value) {
-
-
- $data[] = [ 
-
-'id'=>$value['id'],
-'nombre'=>$value['nombre'],
-'seccion_1'=>'<a class="btn-edit" data-id="'.$value['id'].'" data-seccion="1" data-name="Cabecera"><button type="button" class="btn btn-primary btn-sm">Editar</button><a>',
-'seccion_2'=>'<a class="btn-edit" data-id="'.$value['id'].'" data-seccion="2" data-name="Cuerpo"><button type="button" class="btn btn-primary btn-sm">Editar</button><a>',
-'seccion_3'=>'<a class="btn-edit" data-id="'.$value['id'].'" data-seccion="3" data-name="Fechas"><button type="button" class="btn btn-primary btn-sm">Editar</button><a>',
-'seccion_4'=>'<a class="btn-edit" data-id="'.$value['id'].'" data-seccion="4" data-name="Firmas"><button type="button" class="btn btn-primary btn-sm">Editar</button><a>',
-'seccion_5'=>'<a class="btn-edit" data-id="'.$value['id'].'" data-seccion="5" data-name="Pie de Página"><button type="button" class="btn btn-primary btn-sm">Editar</button><a>'
-
-
- ];
-
-}
-
 $results = ["sEcho" => 1,
-          "iTotalRecords" => count($data),
-          "iTotalDisplayRecords" => count($data),
-          "aaData" => $data 
+          "iTotalRecords" => count($result),
+          "iTotalDisplayRecords" => count($result),
+          "aaData" => $result 
            ];
 echo json_encode($results);
 
@@ -55,24 +35,15 @@ break;
 case 2:
 
 $id      = $_REQUEST['id'];
-$seccion = $_REQUEST['seccion'];
+$query   = "SELECT * FROM plantilla_correo WHERE id=".$id;
+$result  = $funciones->query($query)[0];
 
-$query =  "SELECT * FROM plantilla_correo WHERE id=".$id;
-$result = $funciones->query($query);
-$data  = array();
-foreach ($result as $key => $value) {
+//Remplazar url 
+$url_banner_img = URL."uploads/banner/".$result['banner'];
 
-$data[] =  [
+$cuerpo         = str_replace('url_banner_img', $url_banner_img, $result['cuerpo']);
 
-'id'=>$value['id'],
-'seccion'=>$value['seccion_'.$seccion]
-
-];
-
-
-}
-
-echo json_encode($data[0]);
+echo json_encode(array('cuerpo'=>$cuerpo));
 
 
 break;
@@ -80,16 +51,15 @@ break;
 case 3:
 
 $id        = $_REQUEST['id'];
-$campo     = $_REQUEST['campo'];
-$seccion   = trim($_REQUEST['seccion']);
+$cuerpo    = trim($_REQUEST['cuerpo']);
 
 
 try {
 
 $query = "UPDATE plantilla_correo SET 
-".$campo."=:seccion  WHERE id=:id";
+cuerpo=:cuerpo  WHERE id=:id";
 $statement = $conexion->prepare($query);
-$statement->bindParam(':seccion',$seccion);
+$statement->bindParam(':cuerpo',$cuerpo);
 $statement->bindParam(':id',$id);
 $statement->execute();
 echo "ok";
@@ -101,9 +71,52 @@ echo "Error: ".$e->getMessage();
 
 }
 
+break;
+
+case 4:
+
+$id           =  $_REQUEST['id'];
+
+$extension    = pathinfo($_FILES['archivo']['name'],PATHINFO_EXTENSION);
+$filename     = $_FILES['archivo']['tmp_name'];
+$archivo      = $id.'.'.$extension;
+$destination  = "../uploads/banner/".$archivo;
+
+if (move_uploaded_file($filename, $destination)) 
+{
+
+
+try {
+
+$query     = "UPDATE plantilla_correo SET banner=:banner WHERE id=:id";
+$statement = $conexion->prepare($query);
+$statement->bindParam(':id',$id);
+$statement->bindParam(':banner',$archivo);
+$statement->execute();
+echo "ok";
+
+} catch (Exception $e) {
+
+ echo "Error: ".$e->getMessage();
+	
+}
+
+echo "archivo subido";
+
+} 
+else 
+{
+
+echo "error archivo";
+
+}
+
+
+
 
 
 break;
+
 
 default:
 echo "opción no disponible";

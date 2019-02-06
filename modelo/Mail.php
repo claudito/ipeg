@@ -3,7 +3,7 @@
 class Mail{
 
 
-function send($email,$fullname,$diploma1,$diploma2,$diploma3)
+function automatico_reserva($email,$fullname,$diploma1,$diploma2,$diploma3)
 {
 
 //Enviar Mail
@@ -51,7 +51,7 @@ $funciones = new Funciones();
 $query = "SELECT * FROM plantilla_correo WHERE id=1";
 $dato  = $funciones->query($query)[0];
 
-$html = $dato['seccion_1']. $dato['seccion_2']. $dato['seccion_3']. $dato['seccion_4']. $dato['seccion_5']; 
+$html = $dato['cuerpo']; 
 
 $html = str_replace('#cliente#','<strong>'.$fullname.'</strong>', $html);
 
@@ -81,7 +81,7 @@ return $msg_correo;
 
 
 
-function recordatorio($email,$fullname)
+function recordatorio_reserva($email,$fullname)
 {
 
 //Enviar Mail
@@ -129,7 +129,7 @@ $funciones = new Funciones();
 $query = "SELECT * FROM plantilla_correo WHERE id=2";
 $dato  = $funciones->query($query)[0];
 
-$html = $dato['seccion_1']. $dato['seccion_2']. $dato['seccion_3']. $dato['seccion_4']. $dato['seccion_5']; 
+$html = $dato['cuerpo']; 
 
 $html = str_replace('#cliente#','<strong>'.$fullname.'</strong>', $html);
 
