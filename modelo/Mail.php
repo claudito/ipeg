@@ -51,7 +51,11 @@ $funciones = new Funciones();
 $query = "SELECT * FROM plantilla_correo WHERE id=1";
 $dato  = $funciones->query($query)[0];
 
-$html = $dato['cuerpo']; 
+$html           = $dato['cuerpo']; 
+
+$url_banner_img = URL."uploads/banner/".$dato['banner'];
+
+$html           = str_replace('url_banner_img', $url_banner_img, $html);
 
 $html = str_replace('#cliente#','<strong>'.$fullname.'</strong>', $html);
 
@@ -129,7 +133,12 @@ $funciones = new Funciones();
 $query = "SELECT * FROM plantilla_correo WHERE id=2";
 $dato  = $funciones->query($query)[0];
 
-$html = $dato['cuerpo']; 
+$html           = $dato['cuerpo']; 
+
+$url_banner_img = URL."uploads/banner/".$dato['banner'];
+
+$html           = str_replace('url_banner_img', $url_banner_img, $html);
+
 
 $html = str_replace('#cliente#','<strong>'.$fullname.'</strong>', $html);
 
