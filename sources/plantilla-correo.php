@@ -38,12 +38,7 @@ $id      = $_REQUEST['id'];
 $query   = "SELECT * FROM plantilla_correo WHERE id=".$id;
 $result  = $funciones->query($query)[0];
 
-//Remplazar url 
-$url_banner_img = URL."uploads/banner/".$result['banner'];
-
-$cuerpo         = str_replace('url_banner_img', $url_banner_img, $result['cuerpo']);
-
-echo json_encode(array('cuerpo'=>$cuerpo));
+echo json_encode(array('cuerpo'=>$result['cuerpo']));
 
 
 break;
@@ -52,7 +47,6 @@ case 3:
 
 $id        = $_REQUEST['id'];
 $cuerpo    = trim($_REQUEST['cuerpo']);
-
 
 try {
 
@@ -110,6 +104,31 @@ else
 echo "error archivo";
 
 }
+
+break;
+
+
+case  5:
+
+$id      = $_REQUEST['id'];
+$query   = "SELECT * FROM plantilla_correo WHERE id=".$id;
+$result  = $funciones->query($query)[0];
+
+
+$url    = URL."uploads/banner".$result['banner'];
+
+if (strlen($result['banner'])>0) 
+{
+echo json_encode(array('url'=>$url,'msj'=>'yes'));
+
+} 
+else 
+{
+echo json_encode(array('url'=>$url,'msj'=>'no'));
+
+}
+
+
 
 
 

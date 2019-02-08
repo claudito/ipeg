@@ -106,7 +106,12 @@ $assets->summernote();
           <button type="submit" class="btn btn-primary">Subir Imagen</button>
         </span>
       </div>
+    
+     <p></p>
 
+      <div class="form group">
+      <label>Url Imagen:&nbsp;&nbsp;</label><label id="url"></label>
+      </div>
 
 
       </div>
@@ -170,6 +175,7 @@ loadData();
 
 //Cargar Modal Actualizar Cuerpo
 $(document).on('click','.btn-cuerpo',function(){
+
 
 id        = $(this).data('id');
 nombre    = $(this).data('nombre');
@@ -239,11 +245,30 @@ e.preventDefault();
 //Cargar Modal Banner
 $(document).on('click','.btn-banner',function(){
 
-
+$('#url').html('');
 id        = $(this).data('id');
 nombre    = $(this).data('nombre');
 
 $('.id').val(id);
+
+url = "../sources/plantilla-correo.php?op=5";
+
+$.getJSON(url,{'id':id},function(data){
+
+if(data.msj=='yes')
+{
+ 
+ $('#url').html(data.url);
+
+}
+
+
+
+
+});
+
+
+
 
 $('.modal-title').html(nombre);
 $('#modal-banner').modal('show');
