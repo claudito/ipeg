@@ -5,7 +5,8 @@ include'autoload.php';
 $conexion = new Conexion();
 $conexion = $conexion->get_conexion();
 
-
+echo URL;
+echo "<br>";
 
 $query =  "SELECT * FROM plantilla_correo WHERE id=1";
 $statement = $conexion->prepare($query);
