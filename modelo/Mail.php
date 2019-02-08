@@ -55,7 +55,7 @@ $html           = $dato['cuerpo'];
 
 $url_banner_img = URL."uploads/banner/".$dato['banner'];
 
-$html           = str_replace('url_banner_img', $url_banner_img, $html);
+$html           = str_replace('banner_correo', $url_banner_img, $html);
 
 $html = str_replace('#cliente#','<strong>'.$fullname.'</strong>', $html);
 
@@ -137,7 +137,7 @@ $html           = $dato['cuerpo'];
 
 $url_banner_img = URL."uploads/banner/".$dato['banner'];
 
-$html           = str_replace('url_banner_img', $url_banner_img, $html);
+$html           = str_replace('banner_correo', $url_banner_img, $html);
 
 
 $html = str_replace('#cliente#','<strong>'.$fullname.'</strong>', $html);
