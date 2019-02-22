@@ -424,6 +424,8 @@ swal({
 success:function(){
 
 //$('#modal-asunto').modal('hide');
+//Cargar Data
+loadData();
 
 swal({
   title:"Buen Trabajo",

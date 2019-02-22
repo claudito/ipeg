@@ -144,7 +144,11 @@ $user_mail = $funciones->validar_xss($_REQUEST['user_mail']);
 
 try {
 
-$query     = "UPDATE plantilla_correo SET asunto=:asunto,user_mail=:user_mail WHERE id=:id";
+$query     = "UPDATE plantilla_correo SET 
+asunto=:asunto,
+user_mail=:user_mail 
+
+WHERE id=:id";
 $statement = $conexion->prepare($query);
 $statement->bindParam(':id',$id);
 $statement->bindParam(':asunto',$asunto);
