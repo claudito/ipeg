@@ -25,6 +25,7 @@ $assets->summernote();
          <tr class="table-active">
               <th>Id</th>
               <th>Nombre</th>
+              <th>Asunto</th>
               <th>Banner</th>
               <th>Cuerpo</th>
                       
@@ -121,6 +122,50 @@ $assets->summernote();
 </div>
 </form>
 
+<!-- Modal Asunto -->
+<form id="asunto" autocomplete="off">
+  
+<div class="modal fade" id="modal-asunto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Asunto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+      <input type="hidden" name="id" class="id">
+
+      <div class="form-group">
+      <label>Nombre para mostrar</label>
+      <input type="text" name="user_mail" class="user_mail form-control" required 
+      onchange="Mayusculas(this)">
+      </div>
+
+
+      <div class="form-group">
+      <label>Asunto</label>
+      <input type="text" name="asunto" class="asunto form-control" required 
+      onchange="Mayusculas(this)">
+      </div>
+
+
+      </div>
+
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+</form>
 
 
 <script>
@@ -147,6 +192,14 @@ $('#consulta').dataTable({
 
 { mData: 'id'},
 { mData: 'nombre'},
+{ mData: null,render:function(data){
+
+asunto = '<button type="button" class="btn btn-primary btn-sm btn-asunto" data-nombre="'+data.nombre+'" data-id="'+data.id+'"  data-asunto="'+data.asunto+'"  data-user_mail="'+data.user_mail+'"><i class="fa fa-edit"></i> Editar</button>';
+
+return asunto;
+
+
+}},
 { mData: null,render:function(data){
 
 banner = '<button type="button" class="btn btn-primary btn-sm btn-banner" data-nombre="'+data.nombre+'" data-id="'+data.id+'"><i class="fa fa-upload"></i> Subir / Actualizar</button>';
@@ -326,11 +379,74 @@ e.preventDefault();
 });
 
 
+//Cargar Modal Asunto
+$(document).on('click','.btn-asunto',function(){
+
+id        = $(this).data('id');
+nombre    = $(this).data('nombre');
+asunto    = $(this).data('asunto');
+user_mail = $(this).data('user_mail');
+
+$('.id').val(id);
+$('.asunto').val(asunto);
+$('.user_mail').val(user_mail);
+
+$('.modal-title').html(nombre);
+$('#modal-asunto').modal('show');
+
+
+});
+
+
+//Actualizar Asunto
+$(document).on('submit','#asunto',function(e){
+
+parametros = $(this).serialize();
+
+
+$.ajax({
+
+url:"../sources/plantilla-correo.php?op=6",
+type:"POST",
+data:parametros,
+beforeSend:function()
+{
+
+swal({
+  title: "Cargando",
+  imageUrl:"../assets/img/loader2.gif",
+  text:  "Espere un momento, no cierre la ventana.",
+  timer: 3000,
+  showConfirmButton: false
+});
+
+},
+success:function(){
+
+//$('#modal-asunto').modal('hide');
+
+swal({
+  title:"Buen Trabajo",
+  type: "success",
+  text: "Registro Actualizado",
+  timer: 3000,
+  showConfirmButton: false
+});
+
+
+
+}
 
 
 
 
+});
 
+
+
+
+e.preventDefault();
+});
 </script>
 
 

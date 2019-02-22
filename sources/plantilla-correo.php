@@ -18,7 +18,7 @@ switch ($opcion) {
 case 1:
 header("Content-type: application/json; charset=utf-8");
 
-$query =  "SELECT id,nombre,banner,cuerpo FROM plantilla_correo";
+$query =  "SELECT id,nombre,asunto,user_mail,banner,cuerpo FROM plantilla_correo";
 $statement = $conexion->query($query);
 $statement->execute();
 $result      = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -136,6 +136,33 @@ echo json_encode(array('url'=>$url,'msj'=>'no'));
 
 break;
 
+case 6:
+
+$id        = $_REQUEST['id'];
+$asunto    = $funciones->validar_xss($_REQUEST['asunto']);
+$user_mail = $funciones->validar_xss($_REQUEST['user_mail']);
+
+try {
+
+$query     = "UPDATE plantilla_correo SET asunto=:asunto,user_mail=:user_mail WHERE id=:id";
+$statement = $conexion->prepare($query);
+$statement->bindParam(':id',$id);
+$statement->bindParam(':asunto',$asunto);
+$statement->bindParam(':user_mail',$user_mail);
+$statement->execute();
+echo "ok";
+	
+} catch (Exception $e) {
+	
+
+echo "Error: ".$e->getMessage();
+
+}
+
+
+
+
+break;
 
 default:
 echo "opción no disponible";

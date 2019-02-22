@@ -36,21 +36,23 @@ $mail->Username = USER_MAIL;
 //Password to use for SMTP authentication
 $mail->Password = USER_PASS;
 
-//Set who the message is to be sent from
-$mail->setFrom(USER_MAIL, 'RESERVA CURSO IPEG');
-
 //Set who the message is to be sent to
 $mail->addAddress($email, $fullname);
 
-//Set the subject line
-$mail->Subject = 'RESERVA CURSO IPEG';
-
-//Crear Cuerpo del Mensaje
+//Leer plantilla desde la BD
 $funciones = new Funciones();
-
 $query = "SELECT * FROM plantilla_correo WHERE id=1";
 $dato  = $funciones->query($query)[0];
 
+
+//Set who the message is to be sent from
+$mail->setFrom(USER_MAIL, $dato['user_mail']);
+
+//Set the subject line
+$mail->Subject = $dato['asunto'];
+
+
+//Crear Cuerpo del Mensaje
 $html           = $dato['cuerpo']; 
 
 $url_banner_img = URL."uploads/banner/".$dato['banner'];
@@ -118,21 +120,25 @@ $mail->Username = USER_MAIL;
 //Password to use for SMTP authentication
 $mail->Password = USER_PASS;
 
-//Set who the message is to be sent from
-$mail->setFrom(USER_MAIL, 'RECORDATORIO CURSO IPEG');
+
 
 //Set who the message is to be sent to
 $mail->addAddress($email, $fullname);
 
-//Set the subject line
-$mail->Subject = 'RECORDATORIO CURSO IPEG';
-
-//Crear Cuerpo del Mensaje
+//Leer plantilla desde la BD
 $funciones = new Funciones();
-
 $query = "SELECT * FROM plantilla_correo WHERE id=2";
 $dato  = $funciones->query($query)[0];
 
+
+//Set who the message is to be sent from
+$mail->setFrom(USER_MAIL, $dato['user_mail']);
+
+
+//Set the subject line
+$mail->Subject = $dato['asunto'];
+
+//Crear Cuerpo del Mensaje
 $html           = $dato['cuerpo']; 
 
 $url_banner_img = URL."uploads/banner/".$dato['banner'];
